@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "options.proto";
+
+message User {
+    option  (table_name)    = "user";
+
+    string  uuid            = 1 [
+        (introduced) = "1.0.0",
+        (primarykey) = true
+    ];
+    string  username        = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string  password        = 3 [
+        (introduced) = "1.0.0"
+    ];
+    string  salt            = 4 [
+        (introduced) = "1.0.0"
+    ];
+    int64   created_at      = 5 [
+        (introduced) = "1.0.0"
+    ];
+    int64   updated_at      = 6 [
+        (introduced) = "1.0.0"
+    ];
+}

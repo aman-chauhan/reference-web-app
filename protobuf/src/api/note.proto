@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "options.proto";
+
+message Note {
+    option  (table_name)    = "note";
+
+    string  uuid            = 1 [
+        (introduced) = "1.0.0",
+        (primarykey) = true
+    ];
+    string  title           = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string  content         = 3 [
+        (introduced) = "1.0.0"
+    ];
+    int64   created_at      = 4 [
+        (introduced) = "1.0.0"
+    ];
+    int64   updated_at      = 5 [
+        (introduced) = "1.0.0"
+    ];
+    string  created_by      = 6 [
+        (introduced) = "1.0.0",
+        (foreignkey) = "user.uuid"
+    ];
+    repeated string tags    = 7 [
+        (introduced) = "1.0.0",
+        (references) = "tag.uuid"
+    ];
+}

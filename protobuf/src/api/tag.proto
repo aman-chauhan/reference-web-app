@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "options.proto";
+
+message Tag {
+    option  (table_name)    = "tag";
+
+    string  uuid            = 1 [
+        (introduced) = "1.0.0",
+        (primarykey) = true
+    ];
+    string  name            = 2 [
+        (introduced) = "1.0.0"
+    ];
+    int64   created_at      = 3 [
+        (introduced) = "1.0.0"
+    ];
+    int64   updated_at      = 4 [
+        (introduced) = "1.0.0"
+    ];
+    string  created_by      = 5 [
+        (introduced) = "1.0.0",
+        (foreignkey) = "user.uuid"
+    ];
+}

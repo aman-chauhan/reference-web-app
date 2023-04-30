@@ -6,10 +6,10 @@ RUN apk add protoc && \
     pip install grpcio-tools
 WORKDIR /protobuf
 CMD protoc  --proto_path=src/common --proto_path=src/api --proto_path=src/grpc \
-            --python_out=/py_pb_gen \
+            --python_out=py_pb_gen \
             src/*/*.proto \
         && \
     python -m grpc_tools.protoc \
             --proto_path=src/common --proto_path=src/api --proto_path=src/grpc \
-            --grpc_python_out=/py_pb_gen \
+            --grpc_python_out=py_pb_gen \
             src/grpc/*.proto

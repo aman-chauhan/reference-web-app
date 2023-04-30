@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  proto_compiler:
+    image: "reference-web-app/proto_compiler"
+    container_name: "proto_compiler"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: .
+        target: /protobuf

@@ -16,7 +16,8 @@ message User {
         (introduced) = "1.0.0"
     ];
     string  salt            = 4 [
-        (introduced) = "1.0.0"
+        (introduced) = "1.0.0",
+        (apiexclude) = true
     ];
     int64   created_at      = 5 [
         (introduced) = "1.0.0"

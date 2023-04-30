@@ -12,4 +12,5 @@ extend google.protobuf.FieldOptions {
     bool    primarykey  = 50103;
     string  foreignkey  = 50104;
     string  references  = 50105;
+    bool    apiexclude = 50106;
 }

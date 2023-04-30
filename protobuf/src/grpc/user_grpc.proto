@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+import "status_codes.proto";
+import "options.proto";
+import "user.proto";
+
+service UserService {
+    rpc List    (UserListRequest)       returns (UserListResponse);
+    rpc Get     (UserGetRequest)        returns (UserGetResponse);
+    rpc Create  (UserCreateRequest)     returns (UserCreateResponse);
+    rpc Update  (UserUpdateRequest)     returns (UserUpdateResponse);
+    rpc Delete  (UserDeleteRequest)     returns (UserDeleteResponse);
+}
+
+message UserListRequest {
+    int32       limit           = 1 [
+        (introduced) = "1.0.0"
+    ];
+    int32       offset          = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string      order_by        = 3 [
+        (introduced) = "1.0.0"
+    ];
+    int64       created_before  = 4 [
+        (introduced) = "1.0.0"
+    ];
+    int64       created_after   = 5 [
+        (introduced) = "1.0.0"
+    ];
+    int64       updated_before  = 6 [
+        (introduced) = "1.0.0"
+    ];
+    int64       updated_after   = 7 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+
+message UserListResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    repeated User   users   = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserGetRequest {
+    string      uuid        = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      username    = 2 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserGetResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    User        user        = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserCreateRequest {
+    string      username    = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      password    = 2 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserCreateResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    User        user        = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserUpdateRequest {
+    string      uuid        = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      username    = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string      password    = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserUpdateResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    User        user        = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserDeleteRequest {
+    string      uuid        = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      username    = 2 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message UserDeleteResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+}

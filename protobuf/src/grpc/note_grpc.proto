@@ -1,0 +1,221 @@
+syntax = "proto3";
+
+import "status_codes.proto";
+import "options.proto";
+import "user.proto";
+import "note.proto";
+import "tag.proto";
+
+service NoteService {
+    rpc List    (NoteListRequest)   returns (NoteListResponse);
+    rpc Get     (NoteGetRequest)    returns (NoteGetResponse);
+    rpc Create  (NoteCreateRequest) returns (NoteCreateResponse);
+    rpc Update  (NoteUpdateRequest) returns (NoteUpdateResponse);
+    rpc Delete  (NoteDeleteRequest) returns (NoteDeleteResponse);
+}
+
+service TagService {
+    rpc List    (TagListRequest)   returns (TagListResponse);
+    rpc Get     (TagGetRequest)    returns (TagGetResponse);
+}
+
+message NoteListRequest {
+    int32       limit           = 1 [
+        (introduced) = "1.0.0"
+    ];
+    int32       offset          = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string      keywords        = 3 [
+        (introduced) = "1.0.0"
+    ];
+    string      order_by        = 4 [
+        (introduced) = "1.0.0"
+    ];
+    int64       created_before  = 5 [
+        (introduced) = "1.0.0"
+    ];
+    int64       created_after   = 6 [
+        (introduced) = "1.0.0"
+    ];
+    int64       updated_before  = 7 [
+        (introduced) = "1.0.0"
+    ];
+    int64       updated_after   = 8 [
+        (introduced) = "1.0.0"
+    ];
+    string      created_by      = 9 [
+        (introduced) = "1.0.0"
+    ];
+    repeated string tags        = 10 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteListResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    repeated Note   notes   = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteGetRequest {
+    string      uuid        = 1 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteGetResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    Note        note        = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteCreateRequest {
+    string      title       = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      content     = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string      created_by  = 3 [
+        (introduced) = "1.0.0"
+    ];
+    repeated string tags    = 4 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteCreateResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    Note        note        = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteUpdateRequest {
+    string      uuid        = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      title       = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string      content     = 3 [
+        (introduced) = "1.0.0"
+    ];
+    string      updated_by  = 4 [
+        (introduced) = "1.0.0"
+    ];
+    repeated string tags    = 5 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteUpdateResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    Note        note        = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteDeleteRequest {
+    string      uuid        = 1 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message NoteDeleteResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message TagListRequest {
+    int32       limit           = 1 [
+        (introduced) = "1.0.0"
+    ];
+    int32       offset          = 2 [
+        (introduced) = "1.0.0"
+    ];
+    string      keywords        = 3 [
+        (introduced) = "1.0.0"
+    ];
+    string      order_by        = 4 [
+        (introduced) = "1.0.0"
+    ];
+    int64       created_before  = 5 [
+        (introduced) = "1.0.0"
+    ];
+    int64       created_after   = 6 [
+        (introduced) = "1.0.0"
+    ];
+    int64       updated_before  = 7 [
+        (introduced) = "1.0.0"
+    ];
+    int64       updated_after   = 8 [
+        (introduced) = "1.0.0"
+    ];
+    string      created_by      = 9 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message TagListResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    repeated Tag    tags    = 3 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message TagGetRequest {
+    string      uuid            = 1 [
+        (introduced) = "1.0.0"
+    ];
+    bool        include_notes   = 2 [
+        (introduced) = "1.0.0"
+    ];
+}
+
+message TagGetResponse {
+    StatusCode  status      = 1 [
+        (introduced) = "1.0.0"
+    ];
+    string      reason      = 2 [
+        (introduced) = "1.0.0"
+    ];
+    Tag         tag         = 3 [
+        (introduced) = "1.0.0"
+    ];
+    repeated Note   notes   = 4 [
+        (introduced) = "1.0.0"
+    ];
+}

@@ -1,0 +1,17 @@
+name: Compile protobufs for Reference Web Apps
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image for compiling protobufs
+      working-directory: ./protobuf
+      run: docker-compose build
+    - name: Compile the protobufs
+      working-directory: ./protobuf
+      run: docker-compose up
